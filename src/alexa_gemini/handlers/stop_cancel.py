@@ -9,11 +9,10 @@ GOODBYE = "Goodbye! — Arrivederci!"
 
 class StopCancelIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input: HandlerInput) -> bool:
-        request = handler_input.request_envelope.request
-        return (
-            request.object_type == "IntentRequest"  # type: ignore[union-attr]
-            and request.intent.name in ("AMAZON.StopIntent", "AMAZON.CancelIntent")  # type: ignore[union-attr]
-        )
+        from ask_sdk_core.utils import is_intent_name  # type: ignore[attr-defined]
+        return is_intent_name("AMAZON.StopIntent")(handler_input) or is_intent_name(
+            "AMAZON.CancelIntent"
+        )(handler_input)
 
     def handle(self, handler_input: HandlerInput) -> Response:
         session_attrs = handler_input.attributes_manager.session_attributes

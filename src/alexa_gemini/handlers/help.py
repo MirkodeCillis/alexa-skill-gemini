@@ -14,11 +14,8 @@ HELP_TEXT = (
 
 class HelpIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input: HandlerInput) -> bool:
-        request = handler_input.request_envelope.request
-        return (
-            request.object_type == "IntentRequest"  # type: ignore[union-attr]
-            and request.intent.name == "AMAZON.HelpIntent"  # type: ignore[union-attr]
-        )
+        from ask_sdk_core.utils import is_intent_name  # type: ignore[attr-defined]
+        return is_intent_name("AMAZON.HelpIntent")(handler_input)
 
     def handle(self, handler_input: HandlerInput) -> Response:
         return (

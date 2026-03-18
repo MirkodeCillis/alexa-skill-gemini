@@ -4,6 +4,7 @@ from typing import Any
 from unittest.mock import MagicMock
 
 import pytest
+from ask_sdk_model import IntentRequest  # type: ignore[attr-defined]
 
 
 def make_handler_input(
@@ -18,6 +19,7 @@ def make_handler_input(
     # Request type
     if is_intent and intent_name:
         handler_input.request_envelope.request.object_type = "IntentRequest"
+        handler_input.request_envelope.request.__class__ = IntentRequest
         intent = MagicMock()
         intent.name = intent_name
 
@@ -76,3 +78,24 @@ def help_input() -> MagicMock:
 @pytest.fixture
 def stop_input() -> MagicMock:
     return make_handler_input(intent_name="AMAZON.StopIntent")
+
+
+@pytest.fixture
+def cancel_input() -> MagicMock:
+    return make_handler_input(intent_name="AMAZON.CancelIntent")
+
+
+@pytest.fixture
+def mock_handler_input():
+    """Factory fixture: returns make_handler_input for use in tests."""
+    return make_handler_input
+
+
+@pytest.fixture
+def mock_gemini_service(monkeypatch: pytest.MonkeyPatch) -> MagicMock:
+    """Patch GeminiService everywhere it's imported and return the mock."""
+    mock_svc = MagicMock()
+    mock_svc.chat.return_value = ("answer", [])
+    monkeypatch.setattr("alexa_gemini.handlers.llm_intent.load_config", lambda: MagicMock())
+    monkeypatch.setattr("alexa_gemini.handlers.llm_intent.GeminiService", lambda _: mock_svc)
+    return mock_svc
