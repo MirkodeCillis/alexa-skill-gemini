@@ -1,0 +1,32 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "chat with gemini",
+      "intents": [
+        {
+          "name": "LLMIntent",
+          "slots": [
+            { "name": "question", "type": "AMAZON.SearchQuery" }
+          ],
+          "samples": [
+            "{question}",
+            "ask {question}",
+            "tell me {question}",
+            "I want to know {question}",
+            "can you tell me {question}",
+            "what is {question}",
+            "search for {question}",
+            "look up {question}",
+            "find out {question}",
+            "I have a question {question}",
+            "please answer {question}"
+          ]
+        },
+        { "name": "AMAZON.HelpIntent", "samples": [] },
+        { "name": "AMAZON.CancelIntent", "samples": [] },
+        { "name": "AMAZON.StopIntent", "samples": [] }
+      ],
+      "types": []
+    }
+  }
+}

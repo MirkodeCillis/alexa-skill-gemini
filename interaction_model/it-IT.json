@@ -1,0 +1,32 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "chatta con gemini",
+      "intents": [
+        {
+          "name": "LLMIntent",
+          "slots": [
+            { "name": "question", "type": "AMAZON.SearchQuery" }
+          ],
+          "samples": [
+            "{question}",
+            "chiedi {question}",
+            "dimmi {question}",
+            "voglio sapere {question}",
+            "puoi dirmi {question}",
+            "cos'è {question}",
+            "cerca {question}",
+            "trovami {question}",
+            "ho una domanda {question}",
+            "rispondimi su {question}",
+            "spiegami {question}"
+          ]
+        },
+        { "name": "AMAZON.HelpIntent", "samples": [] },
+        { "name": "AMAZON.CancelIntent", "samples": [] },
+        { "name": "AMAZON.StopIntent", "samples": [] }
+      ],
+      "types": []
+    }
+  }
+}

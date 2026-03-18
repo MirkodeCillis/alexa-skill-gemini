@@ -1,0 +1,32 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "discute avec gemini",
+      "intents": [
+        {
+          "name": "LLMIntent",
+          "slots": [
+            { "name": "question", "type": "AMAZON.SearchQuery" }
+          ],
+          "samples": [
+            "{question}",
+            "demande {question}",
+            "dis-moi {question}",
+            "je veux savoir {question}",
+            "peux-tu me dire {question}",
+            "qu'est-ce que {question}",
+            "cherche {question}",
+            "trouve {question}",
+            "j'ai une question {question}",
+            "réponds à {question}",
+            "explique-moi {question}"
+          ]
+        },
+        { "name": "AMAZON.HelpIntent", "samples": [] },
+        { "name": "AMAZON.CancelIntent", "samples": [] },
+        { "name": "AMAZON.StopIntent", "samples": [] }
+      ],
+      "types": []
+    }
+  }
+}
