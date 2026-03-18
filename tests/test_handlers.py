@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 # ---------------------------------------------------------------------------
 
 class TestLLMIntentHandler:
-    def _get_handler(self) -> "LLMIntentHandler":
+    def _get_handler(self) -> LLMIntentHandler:
         from alexa_gemini.handlers.llm_intent import LLMIntentHandler
         return LLMIntentHandler()
 
@@ -111,7 +111,7 @@ def test_launch_can_handle(launch_input: MagicMock) -> None:
 
 
 def test_launch_returns_speech(launch_input: MagicMock) -> None:
-    from alexa_gemini.handlers.launch import LaunchRequestHandler, WELCOME
+    from alexa_gemini.handlers.launch import WELCOME, LaunchRequestHandler
     LaunchRequestHandler().handle(launch_input)
     launch_input.response_builder.speak.assert_called_once_with(WELCOME)
 

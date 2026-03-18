@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.pyc
+.mypy_cache/
+.pytest_cache/
+dist/
+.venv/
+lambda/alexa_gemini/

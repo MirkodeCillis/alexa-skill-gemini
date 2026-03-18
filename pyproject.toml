@@ -1,0 +1,61 @@
+[project]
+name = "alexa-gemini-assistant"
+version = "0.1.0"
+description = "Multilingual Alexa Skill powered by Google Gemini"
+authors = [
+    {name = "mirkodecillis",email = "mirko.decillis@winelivery.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ask-sdk-core (>=1.19.0,<2.0.0)",
+    "google-genai (>=1.68.0,<2.0.0)",
+    "python-dotenv (>=1.2.2,<2.0.0)"
+]
+
+
+[tool.poetry]
+packages = [{include = "alexa_gemini", from = "src"}]
+package-mode = false
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.2,<10.0.0)",
+    "pytest-mock (>=3.15.1,<4.0.0)",
+    "ruff (>=0.15.6,<0.16.0)",
+    "mypy (>=1.19.1,<2.0.0)",
+    "python-semantic-release (>=10.5.3,<11.0.0)"
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+branch = "main"
+changelog_file = "CHANGELOG.md"
+build_command = ""
+upload_to_pypi = false
+commit_version_number = true
+tag_format = "v{version}"
+
+[tool.semantic_release.commit_parser_options]
+allowed_tags = ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore"]
+minor_tags = ["feat"]
+patch_tags = ["fix", "perf", "refactor"]
