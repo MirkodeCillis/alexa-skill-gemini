@@ -1,5 +1,5 @@
 [project]
-name = "alexa-gemini-assistant"
+name = "alexa-skill-gemini"
 version = "0.1.0"
 description = "Multilingual Alexa Skill powered by Google Gemini"
 authors = [
