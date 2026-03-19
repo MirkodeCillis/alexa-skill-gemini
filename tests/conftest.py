@@ -1,6 +1,6 @@
 """Shared test fixtures."""
 
-from typing import Any
+from typing import Any, Callable
 from unittest.mock import MagicMock
 
 import pytest
@@ -86,7 +86,7 @@ def cancel_input() -> MagicMock:
 
 
 @pytest.fixture
-def mock_handler_input():
+def mock_handler_input() -> Callable[[str | None, dict[str, str | None] | None, dict[str, Any] | None, bool], MagicMock]:
     """Factory fixture: returns make_handler_input for use in tests."""
     return make_handler_input
 

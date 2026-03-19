@@ -76,7 +76,7 @@ def test_markdown_stripped_from_response() -> None:
 
 
 def test_fallback_on_api_error() -> None:
-    from google.genai import errors  # type: ignore[import]
+    from google.genai import errors
     svc, mock_client = _make_service()
     mock_client.models.generate_content.side_effect = errors.APIError.__new__(errors.APIError)
 
